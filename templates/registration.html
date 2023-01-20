@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>  
+<head>  
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<style>  
+body{  
+  font-family: Calibri, Helvetica, sans-serif;  
+  background-color: rgb(40,40,40);
+}  
+.container {  
+    padding: 50px;  
+    background-color: cyan;
+}  
+  
+input[type=text], input[type=password], textarea {  
+  width: 100%;  
+  padding: 15px;
+  margin: 5px 0 22px 0;  
+  display: inline-block;  
+  border: none;  
+  background: white;
+}  
+input[type=text]:focus, input[type=password]:focus {  
+  background-color: white;
+  outline: none;  
+}  
+ div {  
+            padding: 10px 0;  
+         }  
+hr {  
+  border: 1px solid black;
+  margin-bottom: 25px;  
+}  
+.registerbtn {  
+  background-color: #210000;
+  color: white;
+  padding: 16px 20px;  
+  margin: 8px 0;  
+  border: none;  
+  cursor: pointer;  
+  width: 100%;  
+  opacity: 0.9;  
+}  
+.registerbtn:hover {  
+  opacity: 1;  
+}  
+</style>  
+</head>  
+<body>
+<div class="nav bg-info">
+    <h1 class="text-light" style="margin-left: 40%;">Registration</h1>
+</div>
+<div class="container">
+    {% for message in messages %}
+<h5>
+    <div class="alert alert-danger mt-5" style="width: 50%;">
+        {{ message }}
+    </div>
+</h5>
+    {% endfor %}
+</div>
+<div class="container bg-light" style="border-radius: 10px; width:50%">
+<form action="{% url 'usercreate' %}" method="post">
+    {% csrf_token %}
+  <div class="container">  
+  <center>  <h1> Register</h1> </center>  
+  <hr>  
+  <label> Firstname </label>   
+<input type="text" name="first_name" placeholder= "Firstname" size="15" required />
+   
+<label> Lastname: </label>    
+<input type="text" name="last_name" placeholder="Lastname" size="15"required />
+<label> Username: </label>    
+<input type="text" name="username" placeholder="Username" size="15"required />   
+
+ <label for="email"><b>Email</b></label>  
+ <input type="text" placeholder="Enter Email" name="email" required>
+  
+    
+  
+    <label for="password"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" required>
+  
+    <label for="cpassword"><b>Re-type Password</b></label>
+    <input type="password" placeholder="Retype Password" name="cpassword" required>
+    <button type="submit" class="registerbtn">Register</button>
+      <br>
+      <p class="'text-muted">Already a member. <a href="#">Login</a><p>
+</form>  
+</body>  
+</html>
+{% endblock %}
